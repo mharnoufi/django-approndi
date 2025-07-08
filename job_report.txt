@@ -1,0 +1,111 @@
+Top 5 des jobs les mieux payés (en USD) :
+- Business Intelligence Developer: $15000
+- Staff Data Analyst: $15000
+- Machine Learning Developer: $15000
+- Data Analyst: $15000
+- BI Analyst: $15107
+
+Salaire moyen par niveau d'expérience :
+- EN: $99047.60
+- EX: $202057.39
+- MI: $142880.44
+- SE: $172700.32
+
+Nombre de jobs par localisation de l'entreprise :
+- US: 122633
+- CA: 5442
+- GB: 3807
+- AU: 530
+- NL: 414
+- DE: 399
+- FR: 376
+- LT: 340
+- AT: 305
+- ES: 269
+- IN: 213
+- SK: 210
+- PL: 154
+- IE: 138
+- LV: 116
+- MX: 105
+- BR: 100
+- AR: 78
+- FI: 74
+- PT: 72
+- ZA: 69
+- NZ: 68
+- PH: 66
+- IT: 65
+- CH: 55
+- EG: 49
+- CO: 43
+- SG: 38
+- JP: 34
+- BE: 30
+- TR: 27
+- GR: 27
+- CL: 20
+- UA: 19
+- EE: 18
+- TW: 17
+- MT: 17
+- IL: 17
+- CY: 14
+- SE: 13
+- CZ: 13
+- LB: 12
+- KR: 12
+- JM: 12
+- DK: 11
+- RO: 10
+- PR: 10
+- NG: 10
+- HU: 10
+- SI: 9
+- PE: 9
+- NO: 9
+- AM: 9
+- MK: 8
+- RU: 7
+- LU: 7
+- KE: 7
+- ID: 6
+- EC: 6
+- CR: 6
+- AE: 6
+- SV: 5
+- RS: 5
+- HR: 5
+- HK: 5
+- BG: 5
+- VN: 4
+- TH: 4
+- DZ: 4
+- AS: 4
+- SA: 3
+- PK: 3
+- MY: 3
+- HN: 3
+- GH: 3
+- DO: 3
+- CD: 3
+- XK: 2
+- VE: 2
+- PA: 2
+- LS: 2
+- JO: 2
+- CF: 2
+- BA: 2
+- ZM: 1
+- QA: 1
+- OM: 1
+- MU: 1
+- MD: 1
+- IR: 1
+- IQ: 1
+- GI: 1
+- CN: 1
+- BS: 1
+- AD: 1
+
+Ratio de jobs 100% remote : 20.79%

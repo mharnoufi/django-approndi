@@ -12,7 +12,7 @@ django.setup()
 
 from jobs.models import JobRecord, Contract, Skill, Industry, Candidate
 
-CSV_PATH = BASE_DIR / "data" / "salaries.csv"  # ou adapte le chemin
+CSV_PATH = BASE_DIR / "data" / "salaries.csv"
 
 created_count = 0
 skipped_count = 0
