@@ -1,0 +1,18 @@
+{% extends 'feedback/base.html' %}
+{% block title %}Liste des Feedbacks{% endblock %}
+{% block content %}
+<h2>Liste des feedbacks</h2>
+<p>Moyenne des notes : {{ avg_rating }}/5</p>
+
+<ul>
+  {% for feedback in feedbacks %}
+    <li>
+      {{ feedback.job.job_title }} — {{ feedback.rating }}/5 — {{ feedback.author }}
+      <br>
+      <a href="{% url 'job_detail' feedback.job.id %}">Retour au job</a>
+    </li>
+  {% empty %}
+    <li>Aucun feedback</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -13,3 +13,7 @@ def dashboard_view(request):
         'total_countries': total_countries,
     }
     return render(request, 'jobs/dashboard.html', context)
+
+def job_detail(request, pk):
+    job = get_object_or_404(JobRecord, pk=pk)
+    return render(request, 'jobs/job_detail.html', {'job': job})
