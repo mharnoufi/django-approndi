@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "jobs",
     "feedback",
     "rest_framework",
+    "tailwind",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
