@@ -1,0 +1,38 @@
+{% extends 'jobs/base.html' %}
+
+{% block title %}Détail du Job{% endblock %}
+
+{% block content %}
+  <h1>{{ job.job_title }}</h1>
+  <p>Lieu : {{ job.company_location }}</p>
+  <p>Salaire : {{ job.salary_in_usd }} USD</p>
+
+  <h2>Feedbacks :</h2>
+  {% if feedbacks %}
+    <ul>
+      {% for feedback in feedbacks %}
+        <li>
+          <strong>{{ feedback.author }}</strong> ({{ feedback.rating }}/5) :
+          {{ feedback.comment }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucun feedback pour ce job.</p>
+  {% endif %}
+
+  <h2>Ajouter un feedback</h2>
+  <form method="post">
+    {% csrf_token %}
+    <label for="author">Auteur :</label>
+    <input type="text" id="author" name="author" required><br>
+
+    <label for="rating">Note (1 à 5) :</label>
+    <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+
+    <label for="comment">Commentaire :</label><br>
+    <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br>
+
+    <button type="submit">Envoyer</button>
+  </form>
+{% endblock %}

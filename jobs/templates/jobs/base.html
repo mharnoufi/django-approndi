@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon site{% endblock %}</title>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'dashboard' %}">Accueil</a></li>
+        <li><a href="{% url 'job_list' %}">Liste des jobs</a></li>
+        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+    </ul>
+</nav>
+
+<hr/>
+
+<div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

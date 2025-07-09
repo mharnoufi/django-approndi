@@ -1,0 +1,29 @@
+{% extends 'jobs/base.html' %}
+
+{% block content %}
+
+<h2>Liste des offres d’emploi</h2>
+
+<form method="get">
+    <label for="job_title">Filtrer par métier :</label>
+    <select name="job_title" id="job_title" onchange="this.form.submit()">
+        <option value="">-- Tous les métiers --</option>
+        {% for title in job_titles %}
+            <option value="{{ title }}" {% if title == selected_title %}selected{% endif %}>
+                {{ title }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<ul>
+    {% for job in jobs %}
+        <li>
+            <a href="{% url 'job_detail' job.pk %}">{{ job.job_title }}</a> — {{ job.company_location }}
+        </li>
+    {% empty %}
+        <li>Aucun job trouvé pour ce métier.</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

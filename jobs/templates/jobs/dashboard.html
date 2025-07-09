@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Statistiques Emplois</title>
-</head>
-<body>
-    <h1>Statistiques générales</h1>
-    <ul>
-        <li>Nombre total de jobs : {{ total_jobs }}</li>
-        <li>Salaire moyen global (USD) : {{ average_salary }}</li>
-        <li>Nombre de pays couverts : {{ total_countries }}</li>
-    </ul>
-</body>
-</html>
+{% extends 'jobs/base.html' %}
 
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Statistiques générales</h1>
+<p>Total des jobs : {{ total_jobs }}</p>
+<p>Salaire moyen (USD) : {{ average_salary }}</p>
+<p>Nombre de pays : {{ total_countries }}</p>
+{% endblock %}

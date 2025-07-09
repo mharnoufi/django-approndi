@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
-from .models import JobRecord
-from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
+
 from .models import JobRecord
 from .serializers import JobRecordSerializer
+from feedback.models import Feedback
 
 def dashboard_view(request):
     total_jobs = JobRecord.objects.count()
@@ -20,11 +20,40 @@ def dashboard_view(request):
 
 def job_detail(request, pk):
     job = get_object_or_404(JobRecord, pk=pk)
-    return render(request, 'jobs/job_detail.html', {'job': job})
+    feedbacks = job.feedbacks.all()  # related_name='feedbacks' dans Feedback model
+
+    if request.method == 'POST':
+        author = request.POST.get('author')
+        rating = request.POST.get('rating')
+        comment = request.POST.get('comment')
+
+        if author and rating and comment:
+            Feedback.objects.create(
+                job=job,
+                author=author,
+                rating=int(rating),
+                comment=comment
+            )
+            return redirect('job_detail', pk=job.pk)
+
+    return render(request, 'jobs/job_detail.html', {'job': job, 'feedbacks': feedbacks})
+
+def job_list(request):
+    selected_title = request.GET.get('job_title')
+    if selected_title:
+        jobs = JobRecord.objects.filter(job_title=selected_title)
+    else:
+        jobs = JobRecord.objects.all()
+
+    job_titles = JobRecord.objects.values_list('job_title', flat=True).distinct()
+
+    context = {
+        'jobs': jobs,
+        'job_titles': job_titles,
+        'selected_title': selected_title,
+    }
+    return render(request, 'jobs/job_list.html', context)
 
 class JobRecordViewSet(viewsets.ModelViewSet):
-        queryset = JobRecord.objects.all()
-        serializer_class = JobRecordSerializer
-
-    
-
+    queryset = JobRecord.objects.all()
+    serializer_class = JobRecordSerializer
