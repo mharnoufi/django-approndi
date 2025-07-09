@@ -53,8 +53,16 @@ class JobRecord(models.Model):
     industry = models.ForeignKey(Industry, on_delete=models.SET_NULL, null=True, blank=True, related_name='jobs')
     candidate = models.ForeignKey(Candidate, on_delete=models.SET_NULL, null=True, blank=True, related_name='jobs')
 
-    class Meta:
-        unique_together = ('job_title', 'work_year', 'employee_residence')
-
     def __str__(self):
         return f"{self.job_title} ({self.work_year})"
+    
+#from django.db import models
+#from jobs.models import JobRecord
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+
