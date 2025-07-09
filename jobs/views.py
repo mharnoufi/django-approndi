@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.db.models import Avg, Count
+from django.db.models import Avg
 from .models import JobRecord
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
+from .models import JobRecord
+from .serializers import JobRecordSerializer
 
 def dashboard_view(request):
     total_jobs = JobRecord.objects.count()
@@ -17,3 +21,10 @@ def dashboard_view(request):
 def job_detail(request, pk):
     job = get_object_or_404(JobRecord, pk=pk)
     return render(request, 'jobs/job_detail.html', {'job': job})
+
+class JobRecordViewSet(viewsets.ModelViewSet):
+        queryset = JobRecord.objects.all()
+        serializer_class = JobRecordSerializer
+
+    
+

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.db.models import Avg
 from .models import Feedback
 from .forms import FeedbackForm
+from .serializers import FeedbackSerializer
+from rest_framework import viewsets
 
 def feedback_list(request):
     feedbacks = Feedback.objects.select_related('job').all()
@@ -20,3 +22,7 @@ def feedback_add(request):
     else:
         form = FeedbackForm()
     return render(request, 'feedback/add_feedback.html', {'form': form})
+
+class FeedbackViewSet(viewsets.ModelViewSet):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
