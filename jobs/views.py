@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Avg
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from .models import JobRecord
 from .serializers import JobRecordSerializer
 from feedback.models import Feedback
+
 
 def dashboard_view(request):
     total_jobs = JobRecord.objects.count()
@@ -57,3 +59,8 @@ def job_list(request):
 class JobRecordViewSet(viewsets.ModelViewSet):
     queryset = JobRecord.objects.all()
     serializer_class = JobRecordSerializer
+    #permission_classes = [IsAuthenticatedOrReadOnly]
+
+    # Nouveaux Filtres:
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['job_title', 'employee_residence'] # Champs de recherche

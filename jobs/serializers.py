@@ -29,7 +29,9 @@ class CandidateSerializer(serializers.ModelSerializer):
 
 
 class JobRecordSerializer(serializers.ModelSerializer):
-    contract   = ContractSerializer(read_only=True)
+    contract = serializers.PrimaryKeyRelatedField(
+        queryset=Contract.objects.all()
+    )
     skills     = SkillSerializer(many=True, read_only=True)
     industry   = IndustrySerializer(read_only=True)
     candidate  = CandidateSerializer(read_only=True)
