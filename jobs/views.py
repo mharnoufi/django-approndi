@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from .models import JobRecord
 from .serializers import JobRecordSerializer
 from feedback.models import Feedback
-
+from django.http import JsonResponse
 
 def dashboard_view(request):
     total_jobs = JobRecord.objects.count()
@@ -22,7 +22,7 @@ def dashboard_view(request):
 
 def job_detail(request, pk):
     job = get_object_or_404(JobRecord, pk=pk)
-    feedbacks = job.feedbacks.all()  # related_name='feedbacks' dans Feedback model
+    feedbacks = job.feedbacks.all()  # related_name='feedbacks'
 
     if request.method == 'POST':
         author = request.POST.get('author')
@@ -30,13 +30,30 @@ def job_detail(request, pk):
         comment = request.POST.get('comment')
 
         if author and rating and comment:
-            Feedback.objects.create(
+            feedback = Feedback.objects.create(
                 job=job,
                 author=author,
                 rating=int(rating),
                 comment=comment
             )
-            return redirect('job_detail', pk=job.pk)
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                # Réponse JSON pour requête AJAX
+                return JsonResponse({
+                    'success': True,
+                    'feedback': {
+                        'author': feedback.author,
+                        'rating': feedback.rating,
+                        'comment': feedback.comment,
+                    }
+                })
+            else:
+                return redirect('job_detail', pk=job.pk)
+        else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': 'Tous les champs sont obligatoires.'})
+            else:
+                # Tu peux gérer un message d'erreur dans le contexte ici si besoin
+                pass
 
     return render(request, 'jobs/job_detail.html', {'job': job, 'feedbacks': feedbacks})
 
