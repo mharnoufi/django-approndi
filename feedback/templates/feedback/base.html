@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Feedback{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'feedback_list' %}">Feedback App</a></h1>
+        <nav>
+            <a href="{% url 'feedback_add' %}">Ajouter un feedback</a>
+        </nav>
+    </header>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
